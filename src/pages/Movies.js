@@ -4,8 +4,10 @@ import getDataFromAPI from 'getAPI';
 import Notiflix from 'notiflix';
 
 import { ReactComponent as IconMenu } from '../components/images/search-com.svg';
+import { NavLink } from 'react-router-dom';
 
-const Movies = () => {
+const Movies = (parameters) => {
+  
   const [inputValue, setInputValue] = useState('');
   // list of trending movies - 'movies'
   const [movies, setMovies] = useState([]);
@@ -25,10 +27,15 @@ const Movies = () => {
       });
   };
 
-//   useEffect(() => {
-//     getInputMovie(movies);
-//     console.log(movies);
-//   },[inputValue]);
+  const linkClick = (evt) => {
+  
+    parameters.cahgeCurrentMovie(evt.target.id);
+  };
+
+  // useEffect(() => {
+    
+  //   console.log(details);
+  // },[details]);
 
   return (
     <>
@@ -50,7 +57,11 @@ const Movies = () => {
       <ul>
         {movies.map(element => {
           return (
-            <li key={element.id}>{element.original_title || element.name}</li>
+            
+            <li key={element.id}>
+              <NavLink to={`/movies/${element.id}`} onClick={linkClick} id={element.id}>{element.original_title || element.name}</NavLink>
+            </li>
+            
           );
         })}
       </ul>
