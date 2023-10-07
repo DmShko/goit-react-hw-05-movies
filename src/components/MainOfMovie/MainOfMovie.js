@@ -1,3 +1,4 @@
+
 const MainOfMovie = ({ mainData }) => {
     
     // console.log(mainData.genres);
@@ -17,7 +18,7 @@ const MainOfMovie = ({ mainData }) => {
                     }) : ''}
                     
                 </ul>
-                
+               
             </div>      
         </>
     )

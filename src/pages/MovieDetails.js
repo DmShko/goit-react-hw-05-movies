@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { NavLink, Outlet } from "react-router-dom";
 
 import getDataFromAPI from 'getAPI';
 import Notiflix from 'notiflix';
@@ -26,6 +27,11 @@ const MovieDetailes = ({ movieID }) => {
         <>
             <p>It's MovieDetailes</p>
             {<MainOfMovie mainData={mainAboutMovie}/>}
+            <ul>
+                    <li><NavLink to='cast'>Cast</NavLink></li>
+                    <li><NavLink to='reviews'>Review</NavLink></li>
+            </ul>
+            <Outlet/>
         </>
     );
 }

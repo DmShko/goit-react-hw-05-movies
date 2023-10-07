@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 import getDataFromAPI from 'getAPI';
 import Notiflix from 'notiflix';
@@ -11,6 +12,8 @@ const Movies = (parameters) => {
   const [inputValue, setInputValue] = useState('');
   // list of trending movies - 'movies'
   const [movies, setMovies] = useState([]);
+
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const changeInput = (evt) => {
     if(evt.target.value !== 0) setInputValue(evt.target.value);
@@ -28,8 +31,8 @@ const Movies = (parameters) => {
   };
 
   const linkClick = (evt) => {
-  
-    parameters.cahgeCurrentMovie(evt.target.id);
+    setSearchParams(evt.target.search.value);
+    parameters.cahgeCurrentMovie({query: evt.target.id});
   };
 
   // useEffect(() => {
@@ -42,6 +45,7 @@ const Movies = (parameters) => {
       <h1>Search movies</h1>
       <form onSubmit={getInputMovie}>
         <input
+          name='search'
           type="text"
           value={inputValue}
           onChange={changeInput}
