@@ -5,7 +5,7 @@ import Notiflix from 'notiflix';
 
 const Cast = ({ movieID }) => {
 
-    const [creditsMovie, setCreditsMovie] = useState([]);
+    const [creditsMovie, setCreditsMovie] = useState();
 
     useEffect(() => {
         // console.log(parameters.movieID);
@@ -24,13 +24,13 @@ const Cast = ({ movieID }) => {
         <>
             <h2>Cast</h2>
             <ul>
-            {creditsMovie.data.cast.length !== 0 ? creditsMovie.data.cast.map(
+            {creditsMovie !== undefined ? creditsMovie.data.cast.map(
                 value => {
-                    return <li key={movieID}>
+                    return <li key={value.id}>
                         <img src={`https://image.tmdb.org/t/p/w500/${value.profile_path}`} alt='Actor foto'></img>
                         <p>{`Name:${value.name}`}</p>
                         <p>{`Character:${value.character}`}</p>
-                    </li>}) : ''
+                    </li>}) : "Don't have any casts..."
                 }
             </ul>
         </>

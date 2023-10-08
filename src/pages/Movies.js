@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import getDataFromAPI from 'getAPI';
@@ -19,26 +19,29 @@ const Movies = (parameters) => {
     if(evt.target.value !== 0) setInputValue(evt.target.value);
   };
 
+  useEffect(() => {
+   
+    if(searchParams.get('query') !== null){getDataFromAPI('search/movie',`query=${searchParams.get('query')}&include_adult=false&language=en-US`)
+    .then(responce => {
+      setMovies(responce.data.results);
+    })
+    .catch(error => {
+      Notiflix.Notify.warning(error.message);
+    });}
+  },[searchParams])
+
   const getInputMovie = evt => {
     evt.preventDefault();
-    getDataFromAPI('search/movie',`query=${inputValue}&include_adult=false&language=en-US`)
-      .then(responce => {
-        setMovies(responce.data.results);
-      })
-      .catch(error => {
-        Notiflix.Notify.warning(error.message);
-      });
+
+    setSearchParams({query: evt.target.search.value});
+
+    
   };
 
   const linkClick = (evt) => {
-    setSearchParams(evt.target.search.value);
-    parameters.cahgeCurrentMovie({query: evt.target.id});
-  };
-
-  // useEffect(() => {
     
-  //   console.log(details);
-  // },[details]);
+    parameters.cahgeCurrentMovie(evt.target.id);
+  };
 
   return (
     <>
