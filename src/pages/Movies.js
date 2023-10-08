@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useLocation } from 'react-router-dom';
 
 import getDataFromAPI from 'getAPI';
 import Notiflix from 'notiflix';
 
 import { ReactComponent as IconMenu } from '../components/images/search-com.svg';
 import { NavLink } from 'react-router-dom';
+
+import mov from './Movies.module.css'
 
 const Movies = (parameters) => {
   
@@ -14,6 +16,8 @@ const Movies = (parameters) => {
   const [movies, setMovies] = useState([]);
 
   const [searchParams, setSearchParams] = useSearchParams();
+
+  const location = useLocation();
 
   const changeInput = (evt) => {
     if(evt.target.value !== 0) setInputValue(evt.target.value);
@@ -61,12 +65,12 @@ const Movies = (parameters) => {
         </button>
       </form>
 
-      <ul>
+      <ul className={mov.list}>
         {movies.map(element => {
           return (
             
             <li key={element.id}>
-              <NavLink to={`/movies/${element.id}`} onClick={linkClick} id={element.id}>{element.original_title || element.name}</NavLink>
+              <NavLink to={`/movies/${element.id}`} onClick={linkClick} id={element.id} state={location.pathname + `?query=${searchParams.get('query')}`}>{element.original_title || element.name}</NavLink>
             </li>
             
           );

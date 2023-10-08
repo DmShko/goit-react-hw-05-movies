@@ -1,15 +1,19 @@
 import { useEffect, useState } from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useLocation } from "react-router-dom";
 
 import getDataFromAPI from 'getAPI';
 import Notiflix from 'notiflix';
 
 import MainOfMovie from '../components/MainOfMovie/MainOfMovie'
 
+import md from './MovieDetails.module.css'
+
 const MovieDetailes = ({ movieID }) => {
 
-    //const [movieView, setMovieView] = useState(false);
    const [mainAboutMovie, setMainAboutMovie] = useState([]);
+   const location = useLocation();
+
+   console.log(location);
 
     useEffect(() => {
         // console.log(parameters.movieID);
@@ -25,11 +29,12 @@ const MovieDetailes = ({ movieID }) => {
 
     return(
         <>
+            <div className={md.back}><NavLink  to={location.state ?? "/"}>Back </NavLink></div>
             <p>It's MovieDetailes</p>
             {<MainOfMovie mainData={mainAboutMovie}/>}
-            <ul>
-                    <li><NavLink to='cast'>Cast</NavLink></li>
-                    <li><NavLink to='reviews'>Review</NavLink></li>
+            <ul className={md.link}>
+                    <li><NavLink to='cast' state={location.state}>Cast</NavLink></li>
+                    <li><NavLink to='reviews' state={location.state}>Review</NavLink></li>
             </ul>
             <Outlet/>
         </>

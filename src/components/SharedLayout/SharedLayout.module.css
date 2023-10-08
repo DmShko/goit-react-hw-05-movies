@@ -2,6 +2,15 @@
     width: 90vw;
     padding: 0 20px;
     margin: 0 auto;
+
+}
+
+main {
+
+    border: 1px solid grey;
+    border-radius: 6px;
+
+    padding: 10px;
 }
 
 .header {

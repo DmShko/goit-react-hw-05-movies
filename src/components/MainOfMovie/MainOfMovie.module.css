@@ -1,0 +1,12 @@
+.list {
+    list-style: none;
+ 
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 20px;
+}
+
+.img {
+    width: 300px;
+}

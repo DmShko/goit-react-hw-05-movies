@@ -1,13 +1,16 @@
 import { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation  } from 'react-router-dom';
 
 import Notiflix from 'notiflix';
 import getDataFromAPI from 'getAPI';
+
+import home from './Home.module.css'
 
 const Home = (parameters) => {
     
     // list of trending movies - 'movies'
     const [ movies, setMovies ] = useState([]);
+    const location = useLocation();
 
     useEffect(() => {
         
@@ -32,15 +35,15 @@ const Home = (parameters) => {
         <>
             <p>Tranding today</p>
 
-            <ul>
+            <ul className={home.list}>
                 {
                    movies.map(element => {
                         return( 
                             <li key={element.id}>
-                                <NavLink to={`/movies/${element.id}`} onClick={linkClick} id={element.id}>{element.original_title || element.name}</NavLink>
+                                <NavLink  to={`/movies/${element.id}`} onClick={linkClick} id={element.id} state={location.pathname}>{element.original_title || element.name}</NavLink>
                             </li>
                         )
-                   }) 
+                    }) 
                 }
             </ul>
         </>

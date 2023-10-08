@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import getDataFromAPI from 'getAPI';
 import Notiflix from 'notiflix';
 
+import cast from './Cast.module.css'
+
 const Cast = ({ movieID }) => {
 
     const [creditsMovie, setCreditsMovie] = useState();
@@ -23,7 +25,7 @@ const Cast = ({ movieID }) => {
 
         <>
             <h2>Cast</h2>
-            <ul>
+            <ul className={cast.link}>
             {creditsMovie !== undefined ? creditsMovie.data.cast.map(
                 value => {
                     return <li key={value.id}>
