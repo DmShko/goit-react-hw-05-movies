@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-
+import { useEffect, useState } from "react";   
 import getDataFromAPI from 'getAPI';
 import Notiflix from 'notiflix';
 
@@ -8,10 +7,10 @@ const Reviews = (movieID) => {
     const [reviewMovie, setReviewMovie] = useState();
 
     useEffect(() => {
-        // console.log(parameters.movieID);
+       
         getDataFromAPI(`movie/${movieID}/reviews`,`language=en-US`)
         .then(responce => {
-            console.log(responce);
+          
             setReviewMovie(responce);
         })
         .catch(error => {

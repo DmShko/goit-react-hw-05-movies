@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams, useLocation } from 'react-router-dom';
 
 import getDataFromAPI from 'getAPI';
@@ -25,21 +25,21 @@ const Movies = (parameters) => {
 
   useEffect(() => {
    
-    if(searchParams.get('query') !== null){getDataFromAPI('search/movie',`query=${searchParams.get('query')}&include_adult=false&language=en-US`)
+    // getDataFromAPI( , for delete '?query=' URL parameter, when input empty)
+    getDataFromAPI('search/movie', searchParams.get('query') !== null ? `query=${searchParams.get('query')}&include_adult=false&language=en-US`: '')
     .then(responce => {
       setMovies(responce.data.results);
     })
     .catch(error => {
       Notiflix.Notify.warning(error.message);
-    });}
+    });
   },[searchParams])
 
   const getInputMovie = evt => {
     evt.preventDefault();
 
-    setSearchParams({query: evt.target.search.value});
+    setSearchParams(evt.target.search.value !== '' ? {query: evt.target.search.value} : {});
 
-    
   };
 
   const linkClick = (evt) => {
@@ -48,6 +48,7 @@ const Movies = (parameters) => {
   };
 
   return (
+   
     <>
       <h1>Search movies</h1>
       <form onSubmit={getInputMovie}>
@@ -64,7 +65,7 @@ const Movies = (parameters) => {
           <IconMenu width="25px" height="25px" />
         </button>
       </form>
-
+    <Suspense fallback={<div>Loading...</div>}>
       <ul className={mov.list}>
         {movies.map(element => {
           return (
@@ -76,6 +77,7 @@ const Movies = (parameters) => {
           );
         })}
       </ul>
+    </Suspense>
     </>
   );
 };

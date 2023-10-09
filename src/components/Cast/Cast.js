@@ -10,10 +10,10 @@ const Cast = ({ movieID }) => {
     const [creditsMovie, setCreditsMovie] = useState();
 
     useEffect(() => {
-        // console.log(parameters.movieID);
+      
         getDataFromAPI(`movie/${movieID}/credits`,`language=en-US`)
         .then(responce => {
-            console.log(responce);
+           
             setCreditsMovie(responce);
         })
         .catch(error => {
