@@ -13,3 +13,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+nav a.active {
+  background-color: lightslategray;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}

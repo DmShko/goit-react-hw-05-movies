@@ -35,12 +35,12 @@ const Home = (parameters) => {
         <>
             <p>Tranding today</p>
 
-            <ul className={home.list}>
+            <ul className={movies.length !== 0 ? home.list : ''}>
                 {
                    movies.map(element => {
                         return( 
                             <li key={element.id}>
-                                <NavLink  to={`/movies/${element.id}`} onClick={linkClick} id={element.id} state={location.pathname}>{element.original_title || element.name}</NavLink>
+                                <NavLink className={home.item}  to={`/movies/${element.id}`} onClick={linkClick} id={element.id} state={location.pathname}>{element.original_title || element.name}</NavLink>
                             </li>
                         )
                     }) 

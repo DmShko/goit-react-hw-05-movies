@@ -1,5 +1,8 @@
 .list {
+
     list-style: none; 
+    border-left: 2px solid grey;
+    padding: 5px;
 }
 
 button {
@@ -15,4 +18,9 @@ form {
     justify-content: flex-start;
     align-items: center; 
     gap: 10px;
+}
+
+.item {
+    text-decoration: none;
+    color: blue;
 }

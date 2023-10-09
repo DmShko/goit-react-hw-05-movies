@@ -66,12 +66,12 @@ const Movies = (parameters) => {
         </button>
       </form>
     <Suspense fallback={<div>Loading...</div>}>
-      <ul className={mov.list}>
+      <ul className={movies.length !== 0 ? mov.list : ''}>
         {movies.map(element => {
           return (
             
             <li key={element.id}>
-              <NavLink to={`/movies/${element.id}`} onClick={linkClick} id={element.id} state={location.pathname + `?query=${searchParams.get('query')}`}>{element.original_title || element.name}</NavLink>
+              <NavLink className={mov.item} to={`/movies/${element.id}`} onClick={linkClick} id={element.id} state={location.pathname + `?query=${searchParams.get('query')}`}>{element.original_title || element.name}</NavLink>
             </li>
             
           );

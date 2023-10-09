@@ -36,6 +36,7 @@ main {
     justify-content: flex-start;
     align-items: center;
     gap: 20px;
+    
 
     padding: 0 5px;
 
@@ -43,11 +44,7 @@ main {
     border-right: 1px solid black;
 }
 
-.active {
-    color: red;
-    font-weight: bold;
-}
-
 .link {
     color: blue;
+    text-decoration: none;
 }
