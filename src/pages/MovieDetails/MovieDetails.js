@@ -4,7 +4,7 @@ import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import getDataFromAPI from 'getAPI';
 import Notiflix from 'notiflix';
 
-import MainOfMovie from '../components/MainOfMovie/MainOfMovie';
+import MainOfMovie from '../../components/MainOfMovie/MainOfMovie';
 
 import md from './MovieDetails.module.css';
 

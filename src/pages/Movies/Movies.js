@@ -4,7 +4,7 @@ import { useSearchParams, useLocation } from 'react-router-dom';
 import getDataFromAPI from 'getAPI';
 import Notiflix from 'notiflix';
 
-import { ReactComponent as IconMenu } from '../components/images/search-com.svg';
+import { ReactComponent as IconMenu } from '../../components/images/search-com.svg';
 import { NavLink } from 'react-router-dom';
 
 import mov from './Movies.module.css';

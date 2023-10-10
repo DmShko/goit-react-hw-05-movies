@@ -27,7 +27,7 @@ const Cast = ({ movieID }) => {
               return (
                 <li key={value.id}>
                   <img
-                    src={`https://image.tmdb.org/t/p/w500/${value.profile_path}`}
+                    src={value.profile_path ? `https://image.tmdb.org/t/p/w500/${value.profile_path}` : 'http://dummyimage.com/150'}
                     alt="Actor foto"
                   ></img>
                   <p>{`Name:${value.name}`}</p>
